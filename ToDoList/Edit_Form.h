@@ -12,9 +12,7 @@ namespace ToDoList {
 
 	
 	public ref class Edit_Form : public System::Windows::Forms::Form
-	{
-	//public: event   DataSent;
-		
+	{		
 	public:
 	
 		Edit_Form()
@@ -155,6 +153,7 @@ namespace ToDoList {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
+			this->MaximizeBox = false;
 			this->Name = L"Edit_Form";
 			this->Text = L"Переименование";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &Edit_Form::Edit_Form_FormClosed);
