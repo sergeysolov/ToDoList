@@ -16,7 +16,7 @@ const std::string name_header_file = "Head.txt";
 
 std::list<std::string> data;
 std::fstream file;
-std::string current_filename = "Список.txt";
+std::string current_filename = "Список";
 bool EditMode = false;
 
 std::vector<std::string>::iterator iterator_rename;
@@ -494,7 +494,7 @@ namespace ToDoList
 
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
-		header_file.open(name_header_file, std::fstream::in | std::fstream::out | std::fstream::app);
+		header_file.open(name_header_file, std::fstream::in);
 		while (header_file)
 		{
 			std::string temp;
@@ -511,7 +511,10 @@ namespace ToDoList
 			current_filename = files.front();
 		}
 		else
-			files.push_back("Список");
+		{
+			files.push_back(current_filename);
+			update_TitleListBox();
+		}
 
 		label_current_list->Text = toSystemString(current_filename);
 		TitleListBox->Size = System::Drawing::Size(initial_size_title_list_box.Width, initial_size_title_list_box.Height * TitleListBox->Items->Count);
@@ -812,6 +815,8 @@ private: System::Void TitleListBox_SelectedIndexChanged(System::Object^ sender, 
 		data.clear();
 		load_data_from_file_to_list();
 		show_data_at_the_listbox();
+		EditMode = false;
+		ModeLabel->Text = "Добавление";
 	}
 }
 
